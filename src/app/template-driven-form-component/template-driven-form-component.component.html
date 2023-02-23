@@ -1,0 +1,43 @@
+<!-- template-driven-form.component.html -->
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <!-- section "Informations personnelles" -->
+    <h2>Informations personnelles</h2>
+    <div>
+      <label for="name">Nom</label>
+      <input id="name" name="name" ngModel required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" ngModel email required>
+    </div>
+  
+    <!-- section "Informations de payement" -->
+    <h2>Informations de payement</h2>
+    <div>
+      <label for="cardType">Type de carte</label>
+      <select id="cardType" name="cardType" ngModel required>
+        <option value="">----- Sélectionnez un type de carte-----</option>
+        <option value="Visa">Visa</option>
+        <option value="MasterCard">MasterCard</option>
+      </select>
+    </div>
+    <div>
+      <label for="cardNumber">Numéro de carte</label>
+      <input id="cardNumber" name="cardNumber" ngModel pattern="[0-9]{16}" required>
+    </div>
+    <div>
+      <label for="expirationDate">Date d'expiration</label>
+      <input id="expirationDate" name="expirationDate" ngModel required>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" name="securityCodeCheckbox" (change)="toggleSecurityCode()" [checked]="securityCodeVisible">
+        Code de sécurité
+      </label>
+      <input id="securityCode" name="securityCode" ngModel [style.display]="securityCodeVisible ? 'inline-block' : 'none'">
+    </div>
+  
+    <!-- bouton "Ajouter" -->
+    <button type="submit" [disabled]="myForm.invalid">Ajouter</button>
+  </form>
+  
